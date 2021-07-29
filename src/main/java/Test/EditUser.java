@@ -69,5 +69,17 @@ public class EditUser {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+
+    public void ClearBoxes() {
+        EditUser editUser = new EditUser(driver);
+        editUser.getUsernameAddElement().clear();
+        editUser.getEmailElement().clear();
+        editUser.getFullNameElement().clear();
+        editUser.getPasswordAddElement().clear();
+        PageFactory.initElements(driver,this);
+    }
+    public void setUsernameAddElement(String username){
+        UsernameAddElement.sendKeys(username);
+    }
 }
 

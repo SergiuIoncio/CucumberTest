@@ -1,25 +1,23 @@
 package Test.step.StepDefinitions;
-
 import Test.AddUser;
 import Test.DeleteUser;
 import Test.EditUser;
 import Test.LoginPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class LoginStep {
+public class AppTestSteps {
 
     String baseUrl = "http://localhost:4200/";
     WebDriver driver;
-    @Given("Login page")
-    public void loginPage(){
+    @Given("Insert the username, password and Login page")
+    public void TestLoginPage(){
 
         LoginPage loginPage;
         driver = new FirefoxDriver();
@@ -31,15 +29,15 @@ public class LoginStep {
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/app-root/app-users/app-header/mat-toolbar")).isDisplayed());
 
     }
-    @Then("Add new user")
-    public void addNewUser(){
+    @And("Add new user with fullname as {string}")
+    public void TestAddNewUser(String name){
 
         AddUser addUser = new AddUser(driver);
         addUser.getAddUserElement().click();
         addUser.getUsernameAddElement().sendKeys("Sergiuss");
         addUser.getEmailElement().sendKeys("ssergssaasiu@scsx.com");
-        addUser.getFullNameElement().sendKeys("Serrqqsfsdd");
-        addUser.getPasswordAddElement().sendKeys("ssqqsqs12s34");
+        addUser.getFullNameElement().sendKeys(name);
+        addUser.getPasswordAddElement().sendKeys("ssss22345ff");
         addUser.getFocusedElement().click();
         addUser.getCarringElement().click();
         addUser.getPerfectionistElement().click();
@@ -47,32 +45,25 @@ public class LoginStep {
         addUser.getMaleElement().click();
         addUser.getFemaleElement().click();
         addUser.getSubmitElement().click();
-        //boolean isInserted = addUser.getUsername1().isDisplayed();
-        //Assert.assertTrue(isInserted);
-        //Assert.assertTrue(driver.findElement(By.xpath("/html/body/app-root/app-users/app-user-card[6]/div/div[1]/a/h1")).isDisplayed());
         Assert.assertEquals(driver.getPageSource().contains("Sergius"),true);
     }
-    @Then("Edit User")
-    public void editUsers(){
+    @And("Edit one user with username")
+    public void TestEditUsers(){
         EditUser editUser = new EditUser(driver);
         driver.navigate().refresh();
-        editUser.getEditButtonElement().sendKeys(Keys.ENTER);
-        editUser.getUsernameAddElement().clear();
-        editUser.getUsernameAddElement().sendKeys("Alexandru");
-        editUser.getEmailElement().clear();
-        editUser.getEmailElement().sendKeys("Ioonelsso@yahoo.com");
-        editUser.getFullNameElement().clear();
-        editUser.getFullNameElement().sendKeys("AurVIoreluss Idssddovvvncssio");
-        editUser.getPasswordAddElement().clear();
-        editUser.getPasswordAddElement().sendKeys("Aana111111d222222reiu111");
-        editUser.getSubmitEditElement().click();
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='lilCel'][contains(.,'Username: Alexandru')]")).getText().toString().contains("Alexandru"));
-        //Assert.assertTrue(driver.findElement(By.xpath("/html/body/app-root/app-users/app-user-card[1]/div/div[1]/a/h1")).isDisplayed());
-        //Assert.assertEquals("Andreis", editUser.getInsertedUsernameElement().getText());
-
+        if(driver.findElement(By.xpath("//div[@class='lilCel'][contains(.,'Username: Alexandru')]")).getText().toString().contains("Sergiu Ioncio")) {
+            editUser.getEditButtonElement().sendKeys(Keys.ENTER);
+            editUser.ClearBoxes();
+            editUser.getUsernameAddElement().sendKeys("sfsdc xvxewwd");
+            editUser.getEmailElement().sendKeys("Ioonelsso@yahoo.com");
+            editUser.getFullNameElement().sendKeys("andreo Bogdan");
+            editUser.getPasswordAddElement().sendKeys("Aana111111d222222reiu111");
+            editUser.getSubmitEditElement().click();
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='lilCel'][contains(.,'Username: Alexandru')]")).getText().toString().contains("Alexandru"));
+        }
     }
-    @Then("Delete User")
-    public void deleteUser(){
+    @And("Delete one user")
+    public void TestDeleteUser(){
         driver.navigate().refresh();
         DeleteUser deleteUser = new DeleteUser(driver);
         deleteUser.getDeleteButton().click();
@@ -80,9 +71,8 @@ public class LoginStep {
         Assert.assertTrue(driver.findElement(By.className("mat-button-wrapper")).isEnabled());
 
     }
-
-    @Given("Back page")
-    public void backPage(){
+    @Then("Back to home page")
+    public void TestBackPage(){
         driver.navigate().refresh();
         DeleteUser deleteUser = new DeleteUser(driver);
         deleteUser.getBackElement().click();

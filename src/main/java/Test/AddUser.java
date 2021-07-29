@@ -49,5 +49,8 @@ public class AddUser {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    public void setFullNameElement(String name) {
+        FullNameElement.sendKeys(name);
+    }
 
 }

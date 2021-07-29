@@ -1,8 +1,11 @@
-Feature: Program Test
+Feature: Test Program
 
-  Scenario: Run app
-    Given Login page
-      Then Add new user
-      Then Edit User
-     Then Delete User
-     Given Back page
+  Scenario Outline: Run app
+    Given Insert the username, password and Login page
+    And Add new user with fullname as "<name>"
+    And Edit one user with username
+    And Delete one user
+    Then Back to home page
+
+    Examples: |name|
+              |test|
