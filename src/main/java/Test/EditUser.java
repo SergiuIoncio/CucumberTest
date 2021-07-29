@@ -78,8 +78,5 @@ public class EditUser {
         editUser.getPasswordAddElement().clear();
         PageFactory.initElements(driver,this);
     }
-    public void setUsernameAddElement(String username){
-        UsernameAddElement.sendKeys(username);
-    }
 }
 

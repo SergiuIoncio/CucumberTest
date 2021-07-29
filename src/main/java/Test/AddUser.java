@@ -45,12 +45,12 @@ public class AddUser {
     @FindBy(xpath = "//span[contains(.,'Sergiu')]")
     private WebElement Username1;
 
-    public AddUser (WebDriver driver){
+    public AddUser(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
-    }
-    public void setFullNameElement(String name) {
-        FullNameElement.sendKeys(name);
+        PageFactory.initElements(driver, this);
     }
 
+    public void setUsernameAddElement(String name) {
+        UsernameAddElement.sendKeys(name);
+    }
 }

@@ -1,1 +1,90 @@
-[]
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2021-07-29T11:35:14.334Z",
+        "line": 11,
+        "name": "Run app",
+        "description": "",
+        "id": "test-program;run-app;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3628000000,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "Insert the username, password and Login page",
+            "match": {
+              "location": "Test.step.StepDefinitions.AppTestSteps.TestLoginPage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2248000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "Add new user with Andrei Ion",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Andrei Ion",
+                  "offset": 18
+                }
+              ],
+              "location": "Test.step.StepDefinitions.AppTestSteps.TestAddNewUser(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 464000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Edit one user with username",
+            "match": {
+              "location": "Test.step.StepDefinitions.AppTestSteps.TestEditUsers()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 944000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Delete one user",
+            "match": {
+              "location": "Test.step.StepDefinitions.AppTestSteps.TestDeleteUser()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1277000000,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Back to home page",
+            "match": {
+              "location": "Test.step.StepDefinitions.AppTestSteps.TestBackPage()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Test Program",
+    "description": "",
+    "id": "test-program",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/TestProgram.feature",
+    "tags": []
+  }
+]

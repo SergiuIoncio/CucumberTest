@@ -29,14 +29,15 @@ public class AppTestSteps {
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/app-root/app-users/app-header/mat-toolbar")).isDisplayed());
 
     }
-    @And("Add new user with fullname as {string}")
-    public void TestAddNewUser(String name){
+    @And("^Add new user with (.+)$")
+    public void TestAddNewUser(String nameFull){
 
         AddUser addUser = new AddUser(driver);
         addUser.getAddUserElement().click();
-        addUser.getUsernameAddElement().sendKeys("Sergiuss");
+        addUser.getUsernameAddElement().sendKeys("sfsdf1");
+
         addUser.getEmailElement().sendKeys("ssergssaasiu@scsx.com");
-        addUser.getFullNameElement().sendKeys(name);
+        addUser.getFullNameElement().sendKeys(nameFull);
         addUser.getPasswordAddElement().sendKeys("ssss22345ff");
         addUser.getFocusedElement().click();
         addUser.getCarringElement().click();
@@ -45,21 +46,27 @@ public class AppTestSteps {
         addUser.getMaleElement().click();
         addUser.getFemaleElement().click();
         addUser.getSubmitElement().click();
-        Assert.assertEquals(driver.getPageSource().contains("Sergius"),true);
+        Assert.assertEquals(driver.getPageSource().contains("Andrei Ion"),true);
     }
     @And("Edit one user with username")
     public void TestEditUsers(){
         EditUser editUser = new EditUser(driver);
         driver.navigate().refresh();
-        if(driver.findElement(By.xpath("//div[@class='lilCel'][contains(.,'Username: Alexandru')]")).getText().toString().contains("Sergiu Ioncio")) {
+        if(driver.findElement(By.xpath("//h1[contains(.,'Alexandruss')]")).getText().toString().contains("Rikesh Singleton")) {
             editUser.getEditButtonElement().sendKeys(Keys.ENTER);
             editUser.ClearBoxes();
-            editUser.getUsernameAddElement().sendKeys("sfsdc xvxewwd");
-            editUser.getEmailElement().sendKeys("Ioonelsso@yahoo.com");
-            editUser.getFullNameElement().sendKeys("andreo Bogdan");
-            editUser.getPasswordAddElement().sendKeys("Aana111111d222222reiu111");
+            try {
+                Thread.sleep(3000
+                );
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            editUser.getUsernameAddElement().sendKeys("sfsdc xvxessswwd");
+            editUser.getEmailElement().sendKeys("Ioonelsso@yahoosss.com");
+            editUser.getFullNameElement().sendKeys("Alexandruss1");
+            editUser.getPasswordAddElement().sendKeys("Aana111111d11111222222reiu111");
             editUser.getSubmitEditElement().click();
-            Assert.assertTrue(driver.findElement(By.xpath("//div[@class='lilCel'][contains(.,'Username: Alexandru')]")).getText().toString().contains("Alexandru"));
+            Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(.,'Alexandruss')]")).getText().toString().contains("Alexandruss1"));
         }
     }
     @And("Delete one user")
